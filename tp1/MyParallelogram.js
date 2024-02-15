@@ -11,24 +11,27 @@ export class MyParallelogram extends CGFobject {
 	}
 	
 	initBuffers() {
+
 		this.vertices = [
-			0, 0, 0,	//0 BEGIN FIRST TRIANGLE
-			1, 0, 0,	//1
-            1, 1, 0,	//2 
-            2, 0, 0,            //3 BEGIN
-            2, 1, 0,     //4
-            3, 1, 0,    // 5
-            
-            
- 		];
+			0, 0, 0,
+			1, 0, 0,
+			1, 1, 0,
+			2, 1, 0,
+			2, 0, 0,
+			3, 1, 0,
+		]
 
 		//Counter-clockwise reference of vertices
 		this.indices = [
 			0, 1, 2,
-            1, 2, 4,
-            1, 3, 4,
-            3,4,5
-		];
+			1, 3, 2,
+			1, 4, 3,
+			4, 5, 3, 
+			2, 1, 0, // Needed
+			2, 3, 1, // for
+			3, 4, 1, // double
+			3, 5, 4 // sidedness
+		]
 
 		//The defined indices (and corresponding vertices)
 		//will be read in groups of three to draw triangles
