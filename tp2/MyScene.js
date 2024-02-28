@@ -1,6 +1,7 @@
 import { CGFscene, CGFcamera, CGFaxis } from "../lib/CGF.js";
 import { MyTangram } from "./MyTangram.js";
 import { MyUnitCube } from "./MyUnitCube.js";
+import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 
 /**
  * MyScene
@@ -28,10 +29,12 @@ export class MyScene extends CGFscene {
     this.axis = new CGFaxis(this);
     this.tangram =  new MyTangram(this);
     this.unitcube = new MyUnitCube(this);
+    this.unitcubequad = new MyUnitCubeQuad(this);
 
     //Objects connected to MyInterface
     this.displayAxis = true;
-    this.displayTangram = true;
+    this.displayUnitCube = true;
+    this.displayUnitCubeQuad = false;
     this.scaleFactor = 1;
   }
   initLights() {
@@ -93,29 +96,7 @@ export class MyScene extends CGFscene {
     this.multMatrix(sca);
     // ---- BEGIN Primitive drawing section
 
-    /*
-    if (this.displayTangram) {
-      this.pushMatrix();
-
-      this.scale(8, 8, 8);
-      this.translate(0, 0, -0.51)
-      
-
-      this.unitcube.display();
-
-      this.popMatrix();
-
-      this.pushMatrix();
-
-      this.scene.rotate(45*Math.PI/180, 0, 0, 1);
-
-      this.tangram.display();
-
-      this.popMatrix();
-    } 
-    */
-
-    if (this.displayTangram) {
+    if (this.displayUnitCube) {
       //tangram
       this.pushMatrix();
 
@@ -135,6 +116,31 @@ export class MyScene extends CGFscene {
       this.setDiffuse(0.8, 0.4, 0.2, 1.0);
 
       this.unitcube.display();
+
+      this.popMatrix();
+    }
+
+
+    if (this.displayUnitCubeQuad) {
+      //tangram
+      this.pushMatrix();
+
+      this.translate(4, 0.1, 4);
+      this.rotate(-90*Math.PI/180, 1, 0, 0);
+
+      this.tangram.display();
+
+      this.popMatrix();
+      
+      //cube
+      this.pushMatrix();
+
+      this.scale(8, 8, 8);
+      this.translate(0.5, -0.5, 0.5);
+      this.setAmbient(1, 1, 1, 1.0);
+      this.setDiffuse(1, 1, 1, 1.0);
+
+      this.unitcubequad.display();
 
       this.popMatrix();
     }
