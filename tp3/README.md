@@ -11,3 +11,7 @@
 - After this, a new material for each of the figures in the tangram was created, to match the colors displayed in the given picture. Each of these materials had a high specular component. Finally, the *Custom Material* was applied to the diamond in the tangram.
 
 ![Screenshot 2: Colored Tangram](screenshots/cg-t01g04-tp3-2.png)
+
+- In exercise 2 we created the `MyPrism` class. We found this exercise rather complex compared to previous tasks, because of the objective of making this prism of variable number of sides and stacks. This required the implementation of algorithms that would calculate and define the vertices, faces and normals of the prism based on the requested number of slices and stacks.
+
+![Screenshot 2: Prism with 8 sides and 20 stacks](screenshots/cg-t01g04-tp3-3.png)
