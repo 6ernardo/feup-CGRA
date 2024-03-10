@@ -14,4 +14,8 @@
 
 - In exercise 2 we created the `MyPrism` class. We found this exercise rather complex compared to previous tasks, because of the objective of making this prism of variable number of sides and stacks. This required the implementation of algorithms that would calculate and define the vertices, faces and normals of the prism based on the requested number of slices and stacks.
 
-![Screenshot 2: Prism with 8 sides and 20 stacks](screenshots/cg-t01g04-tp3-3.png)
+![Screenshot 3: Prism with 8 sides and 20 stacks](screenshots/cg-t01g04-tp3-3.png)
+
+- In exercise 3 we created `MyCylinder`. This exercise was fairly simple as this object was a simple adaptation of the previously designed prism. Unnecessary vertices and normals were removed, and each vertex had a single normal, which was also easier to calculate. With the new normals and the proper lighting the object corners are smoothed giving it a rounder appearance.
+
+![Screenshot 4: Cylinder](screenshots/cg-t01g04-tp3-4.png)
