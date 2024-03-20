@@ -1,6 +1,7 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { MyQuad } from "./MyQuad.js";
 import { MyTangram } from "./MyTangram.js"
+import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 
 /**
  * MyScene
@@ -25,11 +26,6 @@ export class MyScene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
 
-        //Initialize scene objects
-        this.axis = new CGFaxis(this);
-        this.quad = new MyQuad(this);
-        this.tangram = new MyTangram(this);
-
         //------ Applied Material
         this.quadMaterial = new CGFappearance(this);
         this.quadMaterial.setAmbient(0.1, 0.1, 0.1, 1);
@@ -44,22 +40,32 @@ export class MyScene extends CGFscene {
         this.texture1 = new CGFtexture(this, 'images/board.jpg');
         this.texture2 = new CGFtexture(this, 'images/floor.png');
         this.texture3 = new CGFtexture(this, 'images/window.jpg');
+        this.textureTop = new CGFtexture(this, 'images/mineTop.png');
+        this.textureBottom = new CGFtexture(this, 'images/mineBottom.png');
+        this.textureSide = new CGFtexture(this, 'images/mineSide.png');
         //-------
+
+        //Initialize scene objects
+        this.axis = new CGFaxis(this);
+        this.quad = new MyQuad(this);
+        this.tangram = new MyTangram(this);
+        this.cube = new MyUnitCubeQuad(this, this.textureTop, this.textureBottom, this.textureSide, this.textureSide, this.textureSide, this.textureSide);
 
         //-------Objects connected to MyInterface
         this.displayAxis = true;
         this.displayQuad = true;
         this.displayTangram = false;
+        this.displayCube = false;
         this.scaleFactor = 5;
         this.selectedTexture = -1;        
         this.wrapS = 0;
         this.wrapT = 0;
 
-        this.textures = [this.texture1, this.texture2, this.texture3];
+        this.textures = [this.texture1, this.texture2, this.texture3, this.textureTop, this.textureBottom, this.textureSide];
         this.texCoords = [0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0];
         this.wrappingMethods = ['REPEAT', 'CLAMP_TO_EDGE', 'MIRRORED_REPEAT'];
 
-        this.textureIds = { 'Board': 0, 'Floor': 1, 'Window': 2 };
+        this.textureIds = { 'Board': 0, 'Floor': 1, 'Window': 2, 'mineTop': 3, 'mineBottom': 4, 'mineSide': 5 };
         this.wrappingS = { 'Repeat': 0, 'Clamp to edge': 1, 'Mirrored repeat': 2 };
         this.wrappingT = { 'Repeat': 0, 'Clamp to edge': 1, 'Mirrored repeat': 2 };
 
@@ -133,6 +139,9 @@ export class MyScene extends CGFscene {
 
         if (this.displayTangram)
             this.tangram.display();
+
+        if (this.displayCube)
+            this.cube.display();
 
         // ---- END Primitive drawing section
     }
