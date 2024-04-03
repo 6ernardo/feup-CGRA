@@ -2,7 +2,7 @@
 
 ## Group T01G04
 
-## TP 3 Notes
+## TP 4 Notes
 
 - In exercise 1 we applied a texture, based on the given image, to each of the figures forming the tangram.
 
