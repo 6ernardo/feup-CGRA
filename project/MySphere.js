@@ -1,4 +1,4 @@
-import {CGFobject, CGFappearance, CGFtexture} from "../../lib/CGF.js";
+import {CGFobject, CGFappearance} from "../../lib/CGF.js";
 
 /**
  * MySphere
@@ -14,12 +14,12 @@ export class MySphere extends CGFobject {
         this.stacks = stacks;
         this.inverted = inverted;
 
-        this.texture = new CGFappearance(this.scene);
-        this.texture.setAmbient(1, 1, 1, 1);
-        this.texture.setDiffuse(1, 1, 1, 1);
-        this.texture.setSpecular(1, 1, 1, 1);
-        this.texture.setShininess(10.0);
-        this.texture.loadTexture('images/earth.jpg');
+        // this.texture = new CGFappearance(this.scene);
+        // this.texture.setAmbient(1, 1, 1, 1);
+        // this.texture.setDiffuse(1, 1, 1, 1);
+        // this.texture.setSpecular(1, 1, 1, 1);
+        // this.texture.setShininess(10.0);
+        // this.texture.loadTexture('images/earth.jpg');
 
 		this.initBuffers();
 	}
@@ -40,9 +40,9 @@ export class MySphere extends CGFobject {
             for (let j = 0; j <= this.slices; j++) {
 
                 // Generate vertices
-                var x = Math.cos(increment_slice * j) * Math.sin(increment_stack * i);
-                var y = Math.cos(increment_stack * i);
-                var z = Math.sin(-increment_slice * j) * Math.sin(increment_stack * i);
+                var x = this.radius * Math.cos(increment_slice * j) * Math.sin(increment_stack * i);
+                var y = this.radius * Math.cos(increment_stack * i);
+                var z = this.radius * Math.sin(-increment_slice * j) * Math.sin(increment_stack * i);
 
                 this.vertices.push(x, y, z);
 
@@ -75,7 +75,7 @@ export class MySphere extends CGFobject {
     }
 
     display() {
-        this.texture.apply();
+        //this.texture.apply();
         super.display();
     }
 }
