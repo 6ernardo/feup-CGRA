@@ -1,7 +1,8 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFshader, CGFtexture } from "../lib/CGF.js";
+import { MyFlower } from "./MyFlower.js";
 import { MyPanorama } from "./MyPanorama.js";
+import { MyPetal } from "./MyPetal.js";
 import { MyPlane } from "./MyPlane.js";
-import { MySphere } from "./MySphere.js";
 
 /**
  * MyScene
@@ -29,6 +30,28 @@ export class MyScene extends CGFscene {
     this.axis = new CGFaxis(this);
     this.plane = new MyPlane(this,30);
     //this.sphere = new MySphere(this, 1, 50, 50);
+
+    //flower stuff
+    this.receptacle_material = new CGFappearance(this);
+    this.receptacle_material.setAmbient(1, 1, 0, 1.0);
+    this.receptacle_material.setDiffuse(1, 1, 0, 1.0);
+    this.receptacle_material.setSpecular(1, 1, 0, 1.0);
+    this.receptacle_material.setShininess(10.0);
+
+    this.petal_material = new CGFappearance(this);
+    this.petal_material.setAmbient(1, 1, 1, 1.0);
+    this.petal_material.setDiffuse(1, 1, 1, 1.0);
+    this.petal_material.setSpecular(1, 1, 1, 1.0);
+    this.petal_material.setShininess(10.0);
+
+    this.stem_material = new CGFappearance(this);
+    this.stem_material.setAmbient(0, 1, 0, 1.0);
+    this.stem_material.setDiffuse(0, 1, 0, 1.0);
+    this.stem_material.setSpecular(0, 1, 0, 1.0);
+    this.stem_material.setShininess(10.0);
+
+
+    this.flower = new MyFlower(this, 3, 10, this.petal_material, 0.5, this.receptacle_material, 0.2, 10, this.stem_material, 0, 160, 10);
 
     let texture = new CGFtexture(this, "images/panorama4.jpg");
     this.panorama = new MyPanorama(this, texture);
@@ -83,6 +106,9 @@ this.appearance.setTextureWrap('REPEAT', 'REPEAT');
 
     //this.sphere.display();
     if (this.displayPanorama) this.panorama.display();
+
+    this.flower.display();
+
 
     // ---- BEGIN Primitive drawing section
 
