@@ -63,10 +63,10 @@ export class MyScene extends CGFscene {
 
     this.enableTextures(true);
 
-this.texture = new CGFtexture(this, "images/terrain.jpg");
-this.appearance = new CGFappearance(this);
-this.appearance.setTexture(this.texture);
-this.appearance.setTextureWrap('REPEAT', 'REPEAT');
+  this.texture = new CGFtexture(this, "images/terrain.jpg");
+  this.appearance = new CGFappearance(this);
+  this.appearance.setTexture(this.texture);
+  this.appearance.setTextureWrap('REPEAT', 'REPEAT');
 
   }
   initLights() {
@@ -108,7 +108,6 @@ this.appearance.setTextureWrap('REPEAT', 'REPEAT');
     if (this.displayPanorama) this.panorama.display();
 
     this.flower.display();
-
 
     // ---- BEGIN Primitive drawing section
 
@@ -152,13 +151,13 @@ this.appearance.setTextureWrap('REPEAT', 'REPEAT');
     //petal insert angle (between -30 and 30)
     let petal_insert_angle = -30 + Math.random() * 60;
     
-    
+  
     let receptacle_material = new CGFappearance(this);
     receptacle_material.setAmbient(1, 1, 0, 1.0);
     receptacle_material.setDiffuse(1, 1, 0, 1.0);
     receptacle_material.setSpecular(1, 1, 0, 1.0);
     receptacle_material.setShininess(10.0);
-
+   
     let petal_material = new CGFappearance(this);
     petal_material.setAmbient(1, 0, 0, 1.0);
     petal_material.setDiffuse(1, 0, 0, 1.0);
@@ -171,10 +170,11 @@ this.appearance.setTextureWrap('REPEAT', 'REPEAT');
     stem_material.setSpecular(0, 1, 0, 1.0);
     stem_material.setShininess(10.0);
 
+
     console.log("**********************************");
     console.log(stem_height);
 
-    return new MyFlower(this, external_radius, petal_number, petal_material, receptacle_radius, receptacle_material, stem_radius, stem_height, stem_material, null, petal_angle, petal_insert_angle);
+    return new MyFlower(this, external_radius, petal_number, petal_material, null , receptacle_radius, receptacle_material, null ,stem_radius, stem_height, null ,stem_material, null, petal_angle, petal_insert_angle);
 
   }
 }
