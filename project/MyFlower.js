@@ -10,7 +10,7 @@ import { MyStem } from './MyStem.js';
  */
 export class MyFlower extends CGFobject {
 
-    constructor(scene, external_radius, petal_number, petal_material ,petal_color, receptacle_radius, receptacle_material, receptacle_color, stem_radius, stem_height, stem_color, stem_material, leaf_color, petal_angle, petal_insert_angle) {
+    constructor(scene, external_radius, petal_number, petal_material, receptacle_radius, receptacle_material, stem_radius, stem_height, stem_material, leaf_color, petal_angle, petal_insert_angle) {
 		super(scene);
 
         this.petal_number = petal_number;
@@ -20,12 +20,13 @@ export class MyFlower extends CGFobject {
         this.receptacle_material = receptacle_material;
         this.petal_material = petal_material;
         this.stem_material = stem_material;
+        
         let d = external_radius - receptacle_radius;
         this.triangle_height = (d/2) / (Math.sin((petal_angle/2)*(Math.PI/180)))
 
-        this.stem = new MyStem(this.scene, stem_radius, stem_height, stem_color, stem_material);
-        this.receptacle = new MyReceptacle(this.scene, receptacle_radius, receptacle_color, receptacle_material);
-        this.petal = new MyPetal(this.scene, petal_angle, petal_color, this.triangle_height, petal_material);
+        this.stem = new MyStem(this.scene, stem_radius, stem_height, stem_material);
+        this.receptacle = new MyReceptacle(this.scene, receptacle_radius, receptacle_material);
+        this.petal = new MyPetal(this.scene, petal_angle, petal_material, this.triangle_height);
 	}
 
 

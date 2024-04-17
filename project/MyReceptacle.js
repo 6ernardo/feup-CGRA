@@ -8,13 +8,11 @@ import { MySphere } from './MySphere.js';
  */
 export class MyReceptacle extends CGFobject {
 
-    constructor(scene, radius, color, receptacle_material) {
+    constructor(scene, radius, receptacle_material) {
 		super(scene);
         this.sphere = new MySphere(this.scene, radius, 50, 50);
-        this.color = color;
         this.receptacle_material = receptacle_material;
         this.texture = new CGFtexture(this.scene, "./images/receptableText.png");
-        //this.receptacle_material.setTexture(this.texture);
         this.receptacle_material.setTextureWrap('REPEAT', 'REPEAT');
     }
     
@@ -22,7 +20,6 @@ export class MyReceptacle extends CGFobject {
         this.scene.pushMatrix();
         this.receptacle_material.setTexture(this.texture);
         this.receptacle_material.apply();
-        //this.color.apply();
         this.sphere.display();
         this.scene.popMatrix();
 

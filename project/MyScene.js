@@ -170,11 +170,7 @@ export class MyScene extends CGFscene {
     stem_material.setSpecular(0, 1, 0, 1.0);
     stem_material.setShininess(10.0);
 
-
-    console.log("**********************************");
-    console.log(stem_height);
-
-    return new MyFlower(this, external_radius, petal_number, petal_material, null , receptacle_radius, receptacle_material, null ,stem_radius, stem_height, null ,stem_material, null, petal_angle, petal_insert_angle);
+    return new MyFlower(this, external_radius, petal_number, petal_material , receptacle_radius, receptacle_material ,stem_radius, stem_height, stem_material, null, petal_angle, petal_insert_angle);
 
   }
 }
