@@ -24,6 +24,14 @@ export class MyInterface extends CGFinterface {
         //Slider element in GUI
         this.gui.add(this.scene, 'scaleFactor', 0.1, 5).name('Scale Factor');
 
+        //Folder for Garden settings
+        var f0 = this.gui.addFolder('Garden');
+        f0.add(this.scene, 'displayGarden').name("Display Garden");
+        //subfolder
+        var sf0 = f0.addFolder('Garden Settings');
+        sf0.add(this.scene, 'gardenRows', 1, 5).step(1).name("Garden Rows");
+        sf0.add(this.scene, 'gardenCollumns', 1, 5).step(1).name("Garden Collumns");
+
         return true;
     }
 }
