@@ -7,28 +7,22 @@ import { MyFlower } from './MyFlower.js';
  * @param scene - Reference to MyScene object
  */
 export class MyGarden extends CGFobject {
-	constructor(scene, rows, collumns) {
+	constructor(scene) {
 		super(scene);
-        this.rows = rows;
-        this.collumns = collumns;
 
         this.flowers = [];
         this.deviation_x = [];
         this.deviation_z = [];
 
-        for(let i=0; i<this.rows; i++){
+        //hardcoded bit, always generates 5x5 matrix of flowers
+        for(let i=0; i<5; i++){
             let row = [];
-            for(let j=0; j<this.collumns; j++){
-                row.push(this.generateRandomFlower());
-            }
-            this.flowers.push(row);
-        }
-
-        for(let i=0; i<this.rows; i++){
             let row_x = [];
             let row_z= [];
-            for(let j=0; j<this.collumns; j++){
-                // between 1.5 and 5.5
+            for(let j=0; j<5; j++){
+                row.push(this.generateRandomFlower());
+
+                // (pseudo) random position in the matrix
                 let random_x = 1.5 + Math.random() * 4;
                 let random_z = 1.5 + Math.random() * 4;
                 row_x.push(random_x);
@@ -36,27 +30,14 @@ export class MyGarden extends CGFobject {
             }
             this.deviation_x.push(row_x);
             this.deviation_z.push(row_z);
+            this.flowers.push(row);
         }
 	}
 
-    display() {
+    display(row, column) {
 
-        for(let i=0; i<this.rows; i++){
-            for(let j=0; j<this.collumns; j++){
-                // if(this.flowers[i][j] != undefined){
-                //     this.scene.pushMatrix();
-                //     this.scene.translate(this.deviation_x[i][j] + 7 * i, 0, this.deviation_z[i][j] + 7 * j);
-                //     this.flowers[i][j].display();
-                //     this.scene.popMatrix();
-                // }
-                // else {
-                //     this.generateRandomFlower(i, j);
-
-                //     this.scene.pushMatrix();
-                //     this.scene.translate(this.deviation_x[i][j] + 7 * i, 0, this.deviation_z[i][j] + 7 * j);
-                //     this.flowers[i][j].display();
-                //     this.scene.popMatrix();
-                // }
+        for(let i=0; i<row; i++){
+            for(let j=0; j<column; j++){
 
                 this.scene.pushMatrix();
                 this.scene.translate(this.deviation_x[i][j] + 7 * i, 0, this.deviation_z[i][j] + 7 * j);
@@ -67,7 +48,7 @@ export class MyGarden extends CGFobject {
 
     }
 
-    generateRandomFlower(row, collumn) {
+    generateRandomFlower() {
         /* FLOWER */
         //external radius (between 3 and 7)
         let external_radius = 3 + Math.random() * 4;
@@ -114,18 +95,7 @@ export class MyGarden extends CGFobject {
         stem_material.setSpecular(0, 1, 0, 1.0);
         stem_material.setShininess(10.0);
 
-        // let flower = new MyFlower(this.scene, external_radius, petal_number, petal_material , receptacle_radius, receptacle_material, stem_radius, stem_height, stem_material, null, petal_angle, petal_insert_angle);
-    
-        // this.flowers[row][collumn] = flower;
-
-        // let random_x = 1.5 + Math.random() * 4;
-        // let random_z = 1.5 + Math.random() * 4;
-
-        // this.deviation_x[row][collumn] = random_x;
-        // this.deviation_z[row][collumn] = random_z;
-
         return new MyFlower(this.scene, external_radius, petal_number, petal_material , receptacle_radius, receptacle_material, stem_radius, stem_height, stem_material, null, petal_angle, petal_insert_angle);
-
 
       }
 	

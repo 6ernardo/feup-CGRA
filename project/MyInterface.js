@@ -30,7 +30,7 @@ export class MyInterface extends CGFinterface {
         //subfolder
         var sf0 = f0.addFolder('Garden Settings');
         sf0.add(this.scene, 'gardenRows', 1, 5).step(1).name("Garden Rows");
-        sf0.add(this.scene, 'gardenCollumns', 1, 5).step(1).name("Garden Collumns");
+        sf0.add(this.scene, 'gardenColumns', 1, 5).step(1).name("Garden Columns");
 
         return true;
     }

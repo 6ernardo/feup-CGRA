@@ -29,7 +29,7 @@ export class MyScene extends CGFscene {
     //Initialize scene objects
     this.axis = new CGFaxis(this);
     this.plane = new MyPlane(this,30);
-    this.garden = new MyGarden(this, 5, 5);
+    this.garden = new MyGarden(this);
     //this.sphere = new MySphere(this, 1, 50, 50);
 
     // this.receptacle_material = new CGFappearance(this);
@@ -61,7 +61,7 @@ export class MyScene extends CGFscene {
     this.displayGarden = true;
     this.scaleFactor = 1;
     this.gardenRows = 3;
-    this.gardenCollumns = 3;
+    this.gardenColumns = 3;
 
     this.enableTextures(true);
 
@@ -110,7 +110,7 @@ export class MyScene extends CGFscene {
     if (this.displayPanorama) this.panorama.display();
 
     //this.flower.display();
-    if (this.displayGarden) this.garden.display();
+    if (this.displayGarden) this.garden.display(this.gardenRows, this.gardenColumns);
 
     // ---- BEGIN Primitive drawing section
 
