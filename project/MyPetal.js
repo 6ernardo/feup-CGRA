@@ -12,21 +12,28 @@ export class MyPetal extends CGFobject {
 		super(scene);
         this.angle = angle;
         this.petal_material = petal_material;
+        this.textures = [];
         this.textureDown = new CGFtexture(this.scene, "./images/petalTextDown1.png");
-        this.textureUp = new CGFtexture(this.scene, "./images/petalTextUp.png")
+        this.textureUp = new CGFtexture(this.scene, "./images/petalTextUp.png");
+        this.texture = new CGFtexture(this.scene, "./images/petal.png");
+        this.textures.push(this.textureDown);
+        this.textures.push(this.textureUp);
+        this.textures.push(this.texture);
         this.petal_material.setTextureWrap('REPEAT', 'REPEAT');
+        // Generate a random index within the range of the textures array
+        this.randomIndex = Math.floor(Math.random() * this.textures.length);
         this.triangle = new MyTriangle(this.scene, triangle_height);
 	}
 
     display() {
         this.scene.pushMatrix();
-        this.petal_material.setTexture(this.textureUp);
+        this.petal_material.setTexture(this.textures[this.randomIndex]);
         this.petal_material.apply();
         this.triangle.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.petal_material.setTexture(this.textureDown);
+        this.petal_material.setTexture(this.textures[this.randomIndex]);
         this.petal_material.apply();
         this.scene.rotate(-this.angle*Math.PI/180, 1, 0, 0);
         this.triangle.display();
