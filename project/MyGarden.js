@@ -136,20 +136,24 @@ export class MyGarden extends CGFobject {
     }
 
     randomYellow() {
-        const baseValue = this.randomize(0.5, 1); // Ensuring a certain level of brightness
-        const variation = this.randomize(0, 0.5); // Allowing some variation to make it more dynamic
-        const r = baseValue + variation;
-        const g = baseValue + variation;
-        const b = this.randomize(0, variation); // Some blue variation to make it more interesting
+        const baseValue = this.randomize(0.7, 1); // Ensuring a certain level of brightness
+        const variationR = this.randomize(0, 0.3);
+        const variationG = this.randomize(0, 0.3);
+        const variationB = this.randomize(0, 0.3);
+        const r = baseValue + variationR;
+        const g = baseValue + variationG;
+        const b = this.randomize(0, variationB);
         return [r, g, b];
     }
 
     randomGreen() {
         const baseValue = this.randomize(0.5, 1); // Ensuring a certain level of brightness
-        const variation = this.randomize(0, 0.5); // Allowing some variation to make it more dynamic
-        const r = this.randomize(0, variation); // Some red variation to make it more interesting
-        const g = baseValue + variation;
-        const b = this.randomize(0, variation); // Some blue variation to make it more interesting
+        const variationR = this.randomize(0, 0.5);
+        const variationG = this.randomize(0, 0.5);
+        const variationB = this.randomize(0, 0.5);
+        const r = this.randomize(0, variationR);
+        const g = baseValue + variationG;
+        const b = this.randomize(0, variationB);
         return [r, g, b];
     }
 	
