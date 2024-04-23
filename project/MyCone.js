@@ -28,7 +28,7 @@ export class MyCone extends CGFobject {
             this.vertices.push(this.radius * Math.cos(ang), 0, -Math.sin(ang) * this.radius);
             this.indices.push(i, (i+1) % this.slices, this.slices);
             this.indices.push(this.slices, (i+1) % this.slices, i);
-            this.normals.push(Math.cos(ang), Math.cos(Math.PI/4.0), -Math.sin(ang));
+            this.normals.push(Math.cos(ang), Math.cos(Math.atan(this.height/this.radius)), -Math.sin(ang));
             this.texCoords.push(Math.cos(ang), Math.sin(ang));
             ang+=alphaAng;
         }
