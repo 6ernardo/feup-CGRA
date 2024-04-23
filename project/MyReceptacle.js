@@ -13,7 +13,7 @@ export class MyReceptacle extends CGFobject {
 		super(scene);
         this.cone = new MyCone(this.scene, radius, height, 12, 1);
         this.receptacle_material = receptacle_material;
-        this.texture = new CGFtexture(this.scene, "./images/receptableText.png");
+        this.texture = new CGFtexture(this.scene, "./images/receptableText.jpg");
         this.receptacle_material.setTextureWrap('REPEAT', 'REPEAT');
     }
     
