@@ -58,6 +58,9 @@ export class MyGarden extends CGFobject {
     
         //receptacle radius (between 0.4 and 0.6)
         let receptacle_radius = 0.4 + Math.random() * 0.2;
+
+        //receptacle height (between 0.3 and 0.5)
+        let receptacle_height = 0.3 + Math.random() * 0.2;
     
         /*  STEM  */
         //stem material
@@ -95,7 +98,7 @@ export class MyGarden extends CGFobject {
         stem_material.setSpecular(0, 1, 0, 1.0);
         stem_material.setShininess(10.0);
 
-        return new MyFlower(this.scene, external_radius, petal_number, petal_material , receptacle_radius, receptacle_material, stem_radius, stem_height, stem_material, null, petal_angle, petal_insert_angle);
+        return new MyFlower(this.scene, external_radius, petal_number, petal_material , receptacle_radius, receptacle_height, receptacle_material, stem_radius, stem_height, stem_material, null, petal_angle, petal_insert_angle);
 
       }
 	
