@@ -95,23 +95,27 @@ export class MyGarden extends CGFobject {
         //petal insert angle (between -30 and 30)
         let petal_insert_angle = -30 + Math.random() * 60;
         
-      
+        //generate different shades of yellow for the receptacles
         let receptacle_material = new CGFappearance(this.scene);
-        receptacle_material.setAmbient(1, 1, 0, 1.0);
-        receptacle_material.setDiffuse(1, 1, 0, 1.0);
-        receptacle_material.setSpecular(1, 1, 0, 1.0);
+        let [r, g, b] = this.randomYellow();
+        receptacle_material.setAmbient(r, g, b, 1.0);
+        receptacle_material.setDiffuse(r, g, b, 1.0);
+        receptacle_material.setSpecular(r, g, b, 1.0);
         receptacle_material.setShininess(10.0);
-       
+
+        //different materials for the petals
         let petal_material = new CGFappearance(this.scene);
-        petal_material.setAmbient(1, 0, 0, 1.0);
-        petal_material.setDiffuse(1, 0, 0, 1.0);
-        petal_material.setSpecular(1, 0, 0, 1.0);
+        petal_material.setAmbient(this.randomize(0,1), this.randomize(0,1), this.randomize(0,1), 1.0);
+        petal_material.setDiffuse(this.randomize(0,1), this.randomize(0,1), this.randomize(0,1), 1.0);
+        petal_material.setSpecular(this.randomize(0,1), this.randomize(0,1), this.randomize(0,1), 1.0);
         petal_material.setShininess(10.0);
     
+        //generate different shades of green for the stems
         let stem_material = new CGFappearance(this.scene);
-        stem_material.setAmbient(0, 1, 0, 1.0);
-        stem_material.setDiffuse(0, 1, 0, 1.0);
-        stem_material.setSpecular(0, 1, 0, 1.0);
+        let [r1, g1, b1] = this.randomGreen();
+        stem_material.setAmbient(r1, g1, b1, 1.0);
+        stem_material.setDiffuse(r1, g1, b1, 1.0);
+        stem_material.setSpecular(r1, g1, b1, 1.0);
         stem_material.setShininess(10.0);
 
         // let flower = new MyFlower(this.scene, external_radius, petal_number, petal_material , receptacle_radius, receptacle_material, stem_radius, stem_height, stem_material, null, petal_angle, petal_insert_angle);
@@ -125,9 +129,29 @@ export class MyGarden extends CGFobject {
         // this.deviation_z[row][collumn] = random_z;
 
         return new MyFlower(this.scene, external_radius, petal_number, petal_material , receptacle_radius, receptacle_material, stem_radius, stem_height, stem_material, null, petal_angle, petal_insert_angle);
+    }
 
+    randomize(min, max) {
+        return Math.random() * (max - min) + min;
+    }
 
-      }
+    randomYellow() {
+        const baseValue = this.randomize(0.5, 1); // Ensuring a certain level of brightness
+        const variation = this.randomize(0, 0.5); // Allowing some variation to make it more dynamic
+        const r = baseValue + variation;
+        const g = baseValue + variation;
+        const b = this.randomize(0, variation); // Some blue variation to make it more interesting
+        return [r, g, b];
+    }
+
+    randomGreen() {
+        const baseValue = this.randomize(0.5, 1); // Ensuring a certain level of brightness
+        const variation = this.randomize(0, 0.5); // Allowing some variation to make it more dynamic
+        const r = this.randomize(0, variation); // Some red variation to make it more interesting
+        const g = baseValue + variation;
+        const b = this.randomize(0, variation); // Some blue variation to make it more interesting
+        return [r, g, b];
+    }
 	
 }
 

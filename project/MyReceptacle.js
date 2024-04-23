@@ -12,7 +12,7 @@ export class MyReceptacle extends CGFobject {
 		super(scene);
         this.sphere = new MySphere(this.scene, radius, 50, 50);
         this.receptacle_material = receptacle_material;
-        this.texture = new CGFtexture(this.scene, "./images/receptableText.png");
+        this.texture = new CGFtexture(this.scene, "./images/receptableText.jpg");
         this.receptacle_material.setTextureWrap('REPEAT', 'REPEAT');
     }
     
