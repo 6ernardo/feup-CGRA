@@ -124,10 +124,10 @@ export class MyGarden extends CGFobject {
     }
 
     randomGreen() {
-        const baseValue = this.randomize(0.5, 1); // Ensuring a certain level of brightness
-        const variationR = this.randomize(0, 0.5);
-        const variationG = this.randomize(0, 0.5);
-        const variationB = this.randomize(0, 0.5);
+        const baseValue = this.randomize(0.2, 0.6); // Lowering the base value for darker greens
+        const variationR = this.randomize(0.1, 0.4);
+        const variationG = this.randomize(0.1, 0.4);
+        const variationB = this.randomize(0.1, 0.4);
         const r = this.randomize(0, variationR);
         const g = baseValue + variationG;
         const b = this.randomize(0, variationB);

@@ -36,6 +36,7 @@ export class MyPetal extends CGFobject {
         this.petal_material.setTexture(this.textures[this.randomIndex]);
         this.petal_material.apply();
         this.scene.rotate(-this.angle*Math.PI/180, 1, 0, 0);
+        this.scene.rotate(Math.PI, 0, 1, 0);
         this.triangle.display();
         this.scene.popMatrix();
     }

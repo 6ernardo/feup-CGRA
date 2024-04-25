@@ -1,5 +1,4 @@
-import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFshader, CGFtexture } from "../lib/CGF.js";
-import { MyFlower } from "./MyFlower.js";
+import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { MyGarden } from "./MyGarden.js";
 import { MyPanorama } from "./MyPanorama.js";
 import { MyPlane } from "./MyPlane.js";
@@ -30,27 +29,6 @@ export class MyScene extends CGFscene {
     this.axis = new CGFaxis(this);
     this.plane = new MyPlane(this,30);
     this.garden = new MyGarden(this);
-    //this.sphere = new MySphere(this, 1, 50, 50);
-
-    // this.receptacle_material = new CGFappearance(this);
-    // this.receptacle_material.setAmbient(1, 1, 0, 1.0);
-    // this.receptacle_material.setDiffuse(1, 1, 0, 1.0);
-    // this.receptacle_material.setSpecular(1, 1, 0, 1.0);
-    // this.receptacle_material.setShininess(10.0);
-
-    // this.petal_material = new CGFappearance(this);
-    // this.petal_material.setAmbient(1, 0, 0, 1.0);
-    // this.petal_material.setDiffuse(1, 0, 0, 1.0);
-    // this.petal_material.setSpecular(1, 0, 0, 1.0);
-    // this.petal_material.setShininess(10.0);
-
-    // this.stem_material = new CGFappearance(this);
-    // this.stem_material.setAmbient(0, 1, 0, 1.0);
-    // this.stem_material.setDiffuse(0, 1, 0, 1.0);
-    // this.stem_material.setSpecular(0, 1, 0, 1.0);
-    // this.stem_material.setShininess(10.0);
-
-    //this.flower = new MyFlower(this, 3, 15, this.petal_material, 0.4, this.receptacle_material, 0.3, 14, this.stem_material, null, 180, 30);
 
     let texture = new CGFtexture(this, "images/panorama4.jpg");
     this.panorama = new MyPanorama(this, texture);
@@ -76,6 +54,21 @@ export class MyScene extends CGFscene {
     this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
     this.lights[0].enable();
     this.lights[0].update();
+
+    this.lights[1].setPosition(0, 20, 0, 1);
+    this.lights[1].setDiffuse(0.4, 0.4, 0.4, 1.0);
+    this.lights[1].setSpecular(0.4, 0.4, 0.4, 1.0);
+    this.lights[1].disable();
+    this.lights[1].setVisible(false);
+    this.lights[1].update();
+
+    this.lights[2].setPosition(18, 30, 18, 1);
+    this.lights[2].setDiffuse(0.1, 0.1, 0.1, 1.0);
+    this.lights[2].setSpecular(0.1, 0.1, 0.1, 1.0);
+    this.lights[2].disable();
+    this.lights[2].setVisible(false);
+    this.lights[2].update();
+    
   }
   initCameras() {
     this.camera = new CGFcamera(
@@ -106,11 +99,23 @@ export class MyScene extends CGFscene {
     // Draw axis
     if (this.displayAxis) this.axis.display();
 
-    //this.sphere.display();
     if (this.displayPanorama) this.panorama.display();
 
-    //this.flower.display();
-    if (this.displayGarden) this.garden.display(this.gardenRows, this.gardenColumns);
+    if (this.displayGarden){
+      this.garden.display(this.gardenRows, this.gardenColumns);
+
+      this.lights[1].enable();
+      this.lights[2].enable();
+
+    } 
+    else {
+      this.lights[1].disable();
+      this.lights[2].disable()
+    }
+
+
+    this.lights[1].update();
+    this.lights[2].update();
 
     // ---- BEGIN Primitive drawing section
 
