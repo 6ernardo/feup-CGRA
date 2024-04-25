@@ -64,8 +64,8 @@ export class MyGarden extends CGFobject {
     
         /*  STEM  */
         //stem material
-        //stem radius (between 0.1 and 0.3)
-        let stem_radius = 0.1 + Math.random() * 0.2;
+        //stem radius (between 0.1 and 0.25)
+        let stem_radius = 0.1 + Math.random() * 0.15;
     
         //stem height (between 4 and 14)
         let stem_height = Math.round(4 + Math.random() * 10);
