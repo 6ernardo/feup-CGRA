@@ -2,6 +2,7 @@ import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/
 import { MyGarden } from "./MyGarden.js";
 import { MyPanorama } from "./MyPanorama.js";
 import { MyPlane } from "./MyPlane.js";
+import { MyStem } from "./MyStem.js";
 
 /**
  * MyScene
@@ -30,13 +31,22 @@ export class MyScene extends CGFscene {
     this.plane = new MyPlane(this,30);
     this.garden = new MyGarden(this);
 
+    let stem_material = new CGFappearance(this);
+    stem_material.setAmbient(0, 1, 0, 1.0);
+    stem_material.setDiffuse(0, 1, 0, 1.0);
+    stem_material.setSpecular(0, 1, 0, 1.0);
+    stem_material.setShininess(10.0);
+
+
+    this.stem = new MyStem(this, 1, 4, stem_material, 10);
+
     let texture = new CGFtexture(this, "images/panorama4.jpg");
     this.panorama = new MyPanorama(this, texture);
 
     //Objects connected to MyInterface
     this.displayPanorama = true;
     this.displayAxis = true;
-    this.displayGarden = true;
+    this.displayGarden = false;
     this.scaleFactor = 1;
     this.gardenRows = 3;
     this.gardenColumns = 3;
@@ -113,6 +123,7 @@ export class MyScene extends CGFscene {
       this.lights[2].disable()
     }
 
+    this.stem.display();
 
     this.lights[1].update();
     this.lights[2].update();

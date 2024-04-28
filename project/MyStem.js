@@ -9,7 +9,7 @@ import { MyPetal } from './MyPetal.js';
  */
 export class MyStem extends CGFobject {
 
-    constructor(scene, radius, cylinder_number, stem_material) {
+    constructor(scene, radius, cylinder_number, stem_material, angle) {
 		super(scene);
         this.cylinder_number = cylinder_number;
         this.stem_material = stem_material; 
@@ -17,6 +17,8 @@ export class MyStem extends CGFobject {
         this.stem_material.setTextureWrap('REPEAT', 'REPEAT');
         this.cylinder = new MyCylinder(this.scene, 40, 1, radius);
         this.leaf = new MyPetal(this.scene, 180, stem_material, 1);
+        this.angle = angle;
+        this.radius = radius;
 
         //randomized parameters of the leaf
         this.scale = [];
@@ -35,26 +37,35 @@ export class MyStem extends CGFobject {
     }
 
     display() {
+        let previous_y = 0;
+        let previous_z = 0;
         for(let i=0; i<this.cylinder_number; i++){
             this.scene.pushMatrix();
             this.stem_material.setTexture(this.texture);
             this.stem_material.apply();
-            this.scene.translate(0, i, 0);
-            this.scene.rotate(-90*Math.PI/180, 1, 0, 0);
+
+            console.log(Math.sin((this.angle*i)*Math.PI/180) * this.radius + " i:" + i);
+
+            this.scene.translate(0, (i-previous_y) - Math.cos((90-this.angle*i)*Math.PI/180), previous_z - Math.sin((this.angle*i)*Math.PI/180) * this.radius); // 
+            previous_y += Math.cos((90-this.angle*i)*Math.PI/180);
+            previous_z += Math.sin((this.angle*i)*Math.PI/180) * this.radius;
+            
+            this.scene.rotate((-90+this.angle*i)*Math.PI/180, 1, 0, 0);
             this.cylinder.display();
             this.scene.popMatrix();
 
-            if(i>0){
-                if(this.is_displayed[i-1] == 1){
-                    this.scene.pushMatrix();
-                    this.scene.translate(this.scale[i-1], i, 0);
-                    this.scene.rotate(-90*Math.PI/180, 0, 0, 1);
-                    this.scene.rotate(this.incline[i-1]*Math.PI/180, 0, 1, 0);
-                    this.scene.scale(this.scale[i-1], this.scale[i-1], 1);
-                    this.leaf.display();
-                    this.scene.popMatrix();
-                }
-            }
+            // leafs
+            // if(i>0){
+            //     if(this.is_displayed[i-1] == 1){
+            //         this.scene.pushMatrix();
+            //         this.scene.translate(this.scale[i-1], i, 0);
+            //         this.scene.rotate(-90*Math.PI/180, 0, 0, 1);
+            //         this.scene.rotate(this.incline[i-1]*Math.PI/180, 0, 1, 0);
+            //         this.scene.scale(this.scale[i-1], this.scale[i-1], 1);
+            //         this.leaf.display();
+            //         this.scene.popMatrix();
+            //     }
+            // }
         }
     }
 	
