@@ -25,7 +25,7 @@ export class MyFlower extends CGFobject {
         let d = external_radius - receptacle_radius;
         this.triangle_height = (d/2) / (Math.sin((petal_angle/2)*(Math.PI/180)))
 
-        this.stem = new MyStem(this.scene, stem_radius, stem_height, stem_material);
+        this.stem = new MyStem(this.scene, stem_radius, stem_height, stem_material, 2);
         this.receptacle = new MyReceptacle(this.scene, receptacle_radius, receptacle_height, receptacle_material);
         this.petal = new MyPetal(this.scene, petal_angle, petal_material, this.triangle_height);
 	}

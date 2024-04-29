@@ -37,8 +37,8 @@ export class MyStem extends CGFobject {
     }
 
     display() {
-        let previous_y = 0;
-        let previous_z = 0;
+        let current_y = 0;
+        let current_z = 0;
         for(let i=0; i<this.cylinder_number; i++){
             this.scene.pushMatrix();
             this.stem_material.setTexture(this.texture);
@@ -46,10 +46,14 @@ export class MyStem extends CGFobject {
 
             console.log(Math.sin((this.angle*i)*Math.PI/180) * this.radius + " i:" + i);
 
-            this.scene.translate(0, (i-previous_y) - Math.cos((90-this.angle*i)*Math.PI/180), previous_z - Math.sin((this.angle*i)*Math.PI/180) * this.radius); // 
-            previous_y += Math.cos((90-this.angle*i)*Math.PI/180);
-            previous_z += Math.sin((this.angle*i)*Math.PI/180) * this.radius;
-            
+            // this.scene.translate(0, (i-previous_y) - Math.cos((90-this.angle*i)*Math.PI/180), 0); // 
+            // previous_y += Math.cos((90-this.angle*i)*Math.PI/180);
+            // previous_z += Math.sin((this.angle*i)*Math.PI/180) * this.radius;
+
+            this.scene.translate(0, current_y, current_z);
+            current_y += Math.cos(this.angle * i * Math.PI / 180);
+            current_z += Math.sin(this.angle * i * Math.PI / 180);
+
             this.scene.rotate((-90+this.angle*i)*Math.PI/180, 1, 0, 0);
             this.cylinder.display();
             this.scene.popMatrix();
