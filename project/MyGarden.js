@@ -64,16 +64,19 @@ export class MyGarden extends CGFobject {
     
         /*  STEM  */
         //stem material
-        //stem radius (between 0.1 and 0.25)
-        let stem_radius = 0.1 + Math.random() * 0.15;
+        //stem radius (between 0.1 and 0.15)
+        let stem_radius = 0.1 + Math.random() * 0.05;
     
         //stem height (between 4 and 14)
         let stem_height = Math.round(4 + Math.random() * 10);
+
+        //stem incline (between -2 and 2)
+        let stem_incline = -2 + Math.random() * 4;
     
         /*  PETAL  */
         //petal material
-        //petal number (between 5 and 15)
-        let petal_number = Math.round(5 + Math.random() * 10);
+        //petal number (between 6 and 15)
+        let petal_number = Math.round(6 + Math.random() * 9);
         //petal angle (between 150 and 200)
         let petal_angle = 150 + Math.random() * 50;
         //petal insert angle (between -30 and 30)
@@ -104,7 +107,7 @@ export class MyGarden extends CGFobject {
         stem_material.setShininess(10.0);
 
 
-        return new MyFlower(this.scene, external_radius, petal_number, petal_material , receptacle_radius, receptacle_height, receptacle_material, stem_radius, stem_height, stem_material, null, petal_angle, petal_insert_angle);
+        return new MyFlower(this.scene, external_radius, petal_number, petal_material , receptacle_radius, receptacle_height, receptacle_material, stem_radius, stem_height, stem_incline, stem_material, null, petal_angle, petal_insert_angle);
 
     }
 
