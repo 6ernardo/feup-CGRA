@@ -8,17 +8,23 @@ import { MyTriangle } from './MyTriangle.js';
  */
 export class MyPetal extends CGFobject {
 
-    constructor(scene, angle, petal_material, triangle_height) {
+    constructor(scene, angle, petal_material, triangle_height, leaf) {
 		super(scene);
         this.angle = angle;
         this.petal_material = petal_material;
         this.textures = [];
-        this.textureDown = new CGFtexture(this.scene, "./images/petalTextDown1.png");
-        this.textureUp = new CGFtexture(this.scene, "./images/petalTextUp.png");
-        this.texture = new CGFtexture(this.scene, "./images/petal.png");
-        this.textures.push(this.textureDown);
-        this.textures.push(this.textureUp);
-        this.textures.push(this.texture);
+        if(leaf){
+            this.leafTexture = new CGFtexture(this.scene, "./images/leaf_texture.png");
+            this.textures.push(this.leafTexture);
+        }
+        else {
+            this.textureDown = new CGFtexture(this.scene, "./images/petalTextDown1.png");
+            this.textureUp = new CGFtexture(this.scene, "./images/petalTextUp.png");
+            this.texture = new CGFtexture(this.scene, "./images/petal.png");
+            this.textures.push(this.textureDown);
+            this.textures.push(this.textureUp);
+            this.textures.push(this.texture);
+        }
         this.petal_material.setTextureWrap('REPEAT', 'REPEAT');
         // Generate a random index within the range of the textures array
         this.randomIndex = Math.floor(Math.random() * this.textures.length);

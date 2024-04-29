@@ -11,9 +11,9 @@ export class MyLeaf extends CGFobject {
 
     constructor(scene, leaf_material) {
 		super(scene);
-        this.petal = new MyPetal(this.scene, 180, leaf_material, 1);
+        this.petal = new MyPetal(this.scene, 180, leaf_material, 1, true);
         this.cylinder = new MyCylinder(this.scene, 10, 1, 0.03);
-        this.leaf_material = leaf_material
+        this.leaf_material = leaf_material;
     }
 
 
