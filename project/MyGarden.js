@@ -79,8 +79,8 @@ export class MyGarden extends CGFobject {
         let petal_number = Math.round(6 + Math.random() * 9);
         //petal angle (between 150 and 200)
         let petal_angle = 150 + Math.random() * 50;
-        //petal insert angle (between -30 and 30)
-        let petal_insert_angle = -30 + Math.random() * 60;
+        //petal insert angle (between -15 and 15)
+        let petal_insert_angle = -15 + Math.random() * 30;
         
       
         //generate different shades of yellow for the receptacles
@@ -95,7 +95,7 @@ export class MyGarden extends CGFobject {
         let petal_material = new CGFappearance(this.scene);
         petal_material.setAmbient(this.randomize(0,1), this.randomize(0,1), this.randomize(0,1), 1.0);
         petal_material.setDiffuse(this.randomize(0,1), this.randomize(0,1), this.randomize(0,1), 1.0);
-        petal_material.setSpecular(this.randomize(0,1), this.randomize(0,1), this.randomize(0,1), 1.0);
+        petal_material.setSpecular(this.randomize(0,0.5), this.randomize(0,0.5), this.randomize(0,0.5), 1.0);
         petal_material.setShininess(10.0);
     
         //generate different shades of green for the stems
@@ -106,8 +106,15 @@ export class MyGarden extends CGFobject {
         stem_material.setSpecular(r1, g1, b1, 1.0);
         stem_material.setShininess(10.0);
 
+         //generate different shades of green for the leaves
+         let leaf_material = new CGFappearance(this.scene);
+         leaf_material.setAmbient(0.5*r1, 0.5*g1, 0.5*b1, 1.0);
+         leaf_material.setDiffuse(0.5*r1, 0.5*g1, 0.5*b1, 1.0);
+         leaf_material.setSpecular(0.5*r1, 0.5*g1, 0.5*b1, 1.0);
+         leaf_material.setShininess(10.0);
 
-        return new MyFlower(this.scene, external_radius, petal_number, petal_material , receptacle_radius, receptacle_height, receptacle_material, stem_radius, stem_height, stem_incline, stem_material, null, petal_angle, petal_insert_angle);
+
+        return new MyFlower(this.scene, external_radius, petal_number, petal_material , receptacle_radius, receptacle_height, receptacle_material, stem_radius, stem_height, stem_incline, stem_material, leaf_material, petal_angle, petal_insert_angle);
 
     }
 

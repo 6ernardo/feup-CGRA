@@ -1,7 +1,5 @@
-import {CGFappearance, CGFobject, CGFtexture} from '../lib/CGF.js';
+import {CGFobject, CGFtexture} from '../lib/CGF.js';
 import { MyCone } from './MyCone.js';
-import { MySphere } from './MySphere.js';
-
 /**
  * MyReceptacle
  * @constructor
@@ -13,7 +11,7 @@ export class MyReceptacle extends CGFobject {
 		super(scene);
         this.cone = new MyCone(this.scene, radius, height, 12, 1);
         this.receptacle_material = receptacle_material;
-        this.texture = new CGFtexture(this.scene, "./images/receptableText.jpg");
+        this.texture = new CGFtexture(this.scene, "./images/receptableText.png");
         this.receptacle_material.setTextureWrap('REPEAT', 'REPEAT');
     }
     

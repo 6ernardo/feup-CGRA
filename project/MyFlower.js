@@ -1,4 +1,4 @@
-import {CGFappearance, CGFobject} from '../lib/CGF.js';
+import {CGFobject} from '../lib/CGF.js';
 import { MyPetal } from './MyPetal.js';
 import { MyReceptacle } from './MyReceptacle.js';
 import { MyStem } from './MyStem.js';
@@ -26,10 +26,10 @@ export class MyFlower extends CGFobject {
         let d = external_radius - receptacle_radius;
         this.triangle_height = (d/2) / (Math.sin((petal_angle/2)*(Math.PI/180)))
 
-        this.stem = new MyStem(this.scene, stem_radius, stem_height, stem_material, stem_angle);
+        this.stem = new MyStem(this.scene, stem_radius, stem_height, stem_material, stem_angle, leaf_color);
         this.receptacle = new MyReceptacle(this.scene, receptacle_radius, receptacle_height, receptacle_material);
         this.petal = new MyPetal(this.scene, petal_angle, petal_material, this.triangle_height);
-	}
+}
 
 
     display() {
@@ -42,7 +42,9 @@ export class MyFlower extends CGFobject {
             this.scene.translate(0, this.stem.stem_y , this.stem.stem_z);
             this.scene.rotate(this.stem_angle * this.stem_height * Math.PI/180, 1, 0, 0);
             this.scene.rotate((360/this.petal_number)*i*Math.PI/180, 0, 1, 0);
-            this.scene.translate(0, 0, this.triangle_height+this.receptacle_radius-0.2)
+            this.scene.translate(0, 0, this.receptacle_radius-0.2)
+            this.scene.rotate(this.petal_insert_angle * Math.PI / 180, 1, 0, 0);
+            this.scene.translate(0, 0, this.triangle_height)
             this.scene.rotate( -90 * Math.PI/180, 1, 0, 0);
             this.petal.display();
             this.scene.popMatrix();
@@ -53,8 +55,6 @@ export class MyFlower extends CGFobject {
         this.scene.rotate(this.stem_angle * this.stem_height * Math.PI/180, 1, 0, 0);
         this.receptacle.display();
         this.scene.popMatrix();
-
-        
     }
 	
 }

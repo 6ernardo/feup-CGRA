@@ -10,14 +10,14 @@ import { MyPetal } from './MyPetal.js';
  */
 export class MyStem extends CGFobject {
 
-    constructor(scene, radius, cylinder_number, stem_material, angle) {
+    constructor(scene, radius, cylinder_number, stem_material, angle, leaf_material) {
 		super(scene);
         this.cylinder_number = cylinder_number;
         this.stem_material = stem_material; 
         this.texture = new CGFtexture(this.scene, "./images/stemText.png");
         this.stem_material.setTextureWrap('REPEAT', 'REPEAT');
         this.cylinder = new MyCylinder(this.scene, 40, 1, radius);
-        this.leaf = new MyLeaf(this.scene, stem_material);
+        this.leaf = new MyLeaf(this.scene, leaf_material);
         this.angle = angle;
         this.radius = radius;
 
