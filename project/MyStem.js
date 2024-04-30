@@ -16,7 +16,7 @@ export class MyStem extends CGFobject {
         this.stem_material = stem_material; 
         this.texture = new CGFtexture(this.scene, "./images/stemText.png");
         this.stem_material.setTextureWrap('REPEAT', 'REPEAT');
-        this.cylinder = new MyCylinder(this.scene, 40, 1, radius);
+        this.cylinder = new MyCylinder(this.scene, 6, 1, radius);
         this.leaf = new MyLeaf(this.scene, leaf_material);
         this.angle = angle;
         this.radius = radius;
