@@ -2,6 +2,7 @@ import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/
 import { MyGarden } from "./MyGarden.js";
 import { MyPanorama } from "./MyPanorama.js";
 import { MyPlane } from "./MyPlane.js";
+import { MyRockSet } from "./MyRockSet.js";
 
 /**
  * MyScene
@@ -29,6 +30,7 @@ export class MyScene extends CGFscene {
     this.axis = new CGFaxis(this);
     this.plane = new MyPlane(this,30);
     this.garden = new MyGarden(this);
+    this.rockset = new MyRockSet(this, 4, 2);
 
     let texture = new CGFtexture(this, "images/panorama4.jpg");
     this.panorama = new MyPanorama(this, texture);
@@ -36,7 +38,8 @@ export class MyScene extends CGFscene {
     //Objects connected to MyInterface
     this.displayPanorama = true;
     this.displayAxis = true;
-    this.displayGarden = true;
+    this.displayGarden = false;
+    this.displayRockSet = true;
     this.scaleFactor = 1;
     this.gardenRows = 3;
     this.gardenColumns = 3;
@@ -112,6 +115,8 @@ export class MyScene extends CGFscene {
       this.lights[1].disable();
       this.lights[2].disable()
     }
+
+    if (this.displayRockSet) this.rockset.display();
 
     this.lights[1].update();
     this.lights[2].update();

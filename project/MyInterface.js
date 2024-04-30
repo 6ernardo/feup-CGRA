@@ -32,6 +32,8 @@ export class MyInterface extends CGFinterface {
         sf0.add(this.scene, 'gardenRows', 1, 5).step(1).name("Garden Rows");
         sf0.add(this.scene, 'gardenColumns', 1, 5).step(1).name("Garden Columns");
 
+        this.gui.add(this.scene, 'displayRockSet').name('Display Rock Set');
+
         return true;
     }
 }

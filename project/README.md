@@ -11,3 +11,9 @@
 ### 2. Flowers
 
 ![Garden](images/screenshots/project-t01g04-2.png)
+
+
+### 3. Rocks and Boulders
+
+![Rock](images/screenshots/project-t01g04-3.1.png)
+![Rock Pile](images/screenshots/project-t01g04-3.2.png)
