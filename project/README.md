@@ -17,3 +17,8 @@
 
 ![Rock](images/screenshots/project-t01g04-3.1.png)
 ![Rock Pile](images/screenshots/project-t01g04-3.2.png)
+
+### Bee
+
+![Bee](images/screenshots/project-t01g04-4.png)
+![Bee and Sliders](images/screenshots/project-t01g04-5.png)

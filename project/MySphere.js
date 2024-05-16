@@ -1,4 +1,4 @@
-import {CGFobject, CGFappearance} from "../../lib/CGF.js";
+import { CGFobject, CGFappearance } from "../../lib/CGF.js";
 
 /**
  * MySphere
@@ -6,30 +6,29 @@ import {CGFobject, CGFappearance} from "../../lib/CGF.js";
  * @param scene - Reference to MyScene object
  */
 export class MySphere extends CGFobject {
-	constructor(scene, radius, slices, stacks, inverted = false) {
-		super(scene);
+    constructor(scene, radius, slices, stacks, inverted = false) {
+        super(scene);
 
         this.radius = radius;
         this.slices = slices;
         this.stacks = stacks;
         this.inverted = inverted;
 
-        // this.texture = new CGFappearance(this.scene);
-        // this.texture.setAmbient(1, 1, 1, 1);
-        // this.texture.setDiffuse(1, 1, 1, 1);
-        // this.texture.setSpecular(1, 1, 1, 1);
-        // this.texture.setShininess(10.0);
-        // this.texture.loadTexture('images/earth.jpg');
+        this.texture = new CGFappearance(this.scene);
+        this.texture.setAmbient(1, 1, 1, 1);
+        this.texture.setDiffuse(1, 1, 1, 1);
+        this.texture.setSpecular(1, 1, 1, 1);
+        this.texture.setShininess(10.0);
+        this.texture.loadTexture('images/earth.jpg');
 
-		this.initBuffers();
-	}
-	
-	initBuffers() {
+        this.initBuffers();
+    }
+
+    initBuffers() {
         this.vertices = [];
         this.indices = [];
         this.normals = [];
         this.texCoords = [];
-
 
         var increment_stack = Math.PI / (this.stacks * 2);
         var increment_slice = (2 * Math.PI) / this.slices;
@@ -46,7 +45,7 @@ export class MySphere extends CGFobject {
 
                 this.vertices.push(x, y, z);
 
-                // Generate indices
+                // Generate indices for horizontal lines
                 if (i < this.stacks * 2 && j < this.slices) {
                     var current = i * y_vertices + j;
                     var next = current + y_vertices;
@@ -64,14 +63,12 @@ export class MySphere extends CGFobject {
                 if (this.inverted) this.normals.push(-x, -y, -z);
                 else this.normals.push(x, y, z);
 
-                this.texCoords.push(j / this.slices , i / (this.stacks*2))
-                
+                this.texCoords.push(j / this.slices, i / (this.stacks * 2));
             }
         }
 
         this.primitiveType = this.scene.gl.TRIANGLES;
-
-        this.initGLBuffers();     
+        this.initGLBuffers();
     }
 
     display() {
