@@ -9,6 +9,24 @@ export class MyInterface extends CGFinterface {
         super();
     }
 
+    initKeys() {
+        this.scene.gui = this;
+        this.processKeyboard = function(){};
+        this.activeKeys={};
+    }
+
+    processKeyDown(event) {
+        this.activeKeys[event.code] = true;
+    }
+
+    processKeyUp(event) {
+        this.activeKeys[event.code] = false;
+    }
+
+    isKeyPressed(keyCode) {
+        return this.activeKeys[keyCode] || false;
+    }
+
     init(application) {
         // call CGFinterface init
         super.init(application);
@@ -22,7 +40,8 @@ export class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayPanorama').name('Display Panorama');
 
         //Slider element in GUI
-        this.gui.add(this.scene, 'scaleFactor', 0.1, 5).name('Scale Factor');
+        this.gui.add(this.scene, 'scaleFactor', 0.5, 3).name('Scale Factor');
+        this.gui.add(this.scene, 'speedFactor', 0.1, 3).name('Speed Factor');
 
         //Folder for Garden settings
         var f0 = this.gui.addFolder('Garden');
@@ -33,6 +52,8 @@ export class MyInterface extends CGFinterface {
         sf0.add(this.scene, 'gardenColumns', 1, 5).step(1).name("Garden Columns");
 
         this.gui.add(this.scene, 'displayRockSet').name('Display Rock Set');
+
+        this.initKeys();
 
         return true;
     }
