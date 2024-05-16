@@ -64,14 +64,8 @@ export class MyBee extends CGFobject {
         this.orientation += v;
 
         let norma = Math.sqrt(this.velocity.x ** 2 + this.velocity.z ** 2);
-        console.log("Norma: " + norma);
-        console.log("Orientation: " + this.orientation / Math.PI * 180);
-        console.log("Initial v: " + this.velocity.x);
         this.velocity.x = norma * Math.sin(this.orientation);
         this.velocity.z = norma * Math.cos(this.orientation);
-        norma = Math.sqrt(this.velocity.x ** 2 + this.velocity.z ** 2);
-        console.log("Norma2: " + norma);
-        console.log("Final v: " + this.velocity.x);
     }
 
     accelerate(v) {
@@ -105,7 +99,7 @@ export class MyBee extends CGFobject {
         this.yellow.setTexture(this.beetex);
         this.yellow.apply();
         this.scene.scale(1, 0.9, 1);
-        this.scene.rotate(90*Math.PI/180, 0, 0, 1);
+        this.scene.rotate(60*Math.PI/180, 1, 0, 0);
         this.sphere.display();
         this.scene.popMatrix();
     
@@ -115,7 +109,7 @@ export class MyBee extends CGFobject {
         this.scene.rotate(-30 * Math.PI / 180, 1, 0, 0);
         this.scene.translate(0, 0, -2.4);
         this.scene.scale(1, 1, 1.5);
-        this.scene.rotate(90*Math.PI/180, 0, 0, 1);
+        this.scene.rotate(90*Math.PI/180, 1, 0, 0);
         this.sphere.display();
         this.scene.popMatrix();
 

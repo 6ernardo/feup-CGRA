@@ -142,7 +142,7 @@ export class MyScene extends CGFscene {
 
     this.oscilation = Math.sin(this.time_diff * Math.PI * 2);
     this.wings = Math.sin(this.time_diff * Math.PI * 12);
-    this.bee.update(this.oscilation, this.wings, this.time_diff);
+    this.bee.update(this.oscilation, this.wings, 3);
 
     this.checkKeys();
   }
