@@ -1,5 +1,5 @@
-import { CGFobject, CGFappearance } from "../../lib/CGF.js";
-import { MySphere } from './MySphere.js';
+import { CGFobject, CGFappearance } from "../../../lib/CGF.js";
+import { MySphere } from '../../components/MySphere.js';
 /**
  * MyPanorama
  * @constructor

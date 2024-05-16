@@ -1,5 +1,5 @@
-import {CGFappearance, CGFobject, CGFtexture} from '../lib/CGF.js';
-import { MyTriangle } from './MyTriangle.js';
+import {CGFappearance, CGFobject, CGFtexture} from '../../lib/CGF.js';
+import { MyTriangle } from '../components/MyTriangle.js';
 
 /**
  * MyPetal

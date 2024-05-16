@@ -1,5 +1,5 @@
-import {CGFobject, CGFtexture} from '../lib/CGF.js';
-import { MyCone } from './MyCone.js';
+import {CGFobject, CGFtexture} from '../../lib/CGF.js';
+import { MyCone } from '../components/MyCone.js';
 /**
  * MyReceptacle
  * @constructor

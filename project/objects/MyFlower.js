@@ -1,4 +1,4 @@
-import {CGFobject} from '../lib/CGF.js';
+import {CGFobject} from '../../lib/CGF.js';
 import { MyPetal } from './MyPetal.js';
 import { MyReceptacle } from './MyReceptacle.js';
 import { MyStem } from './MyStem.js';

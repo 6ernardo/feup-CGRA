@@ -1,6 +1,6 @@
-import { CGFobject, CGFappearance, CGFtexture} from '../lib/CGF.js';
-import { MyCone } from './MyCone.js';
-import { MySphere } from './MySphere.js';
+import { CGFobject, CGFappearance, CGFtexture} from '../../lib/CGF.js';
+import { MyCone } from '../components/MyCone.js';
+import { MySphere } from '../components/MySphere.js';
 
 /**
  * MyBee

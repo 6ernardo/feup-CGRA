@@ -1,10 +1,9 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
-import { MyGarden } from "./MyGarden.js";
-import { MyPanorama } from "./MyPanorama.js";
-import { MyPlane } from "./MyPlane.js";
-import { MyRockSet } from "./MyRockSet.js";
-import { MyBee } from "./MyBee.js";
-import { MySphere } from "./MySphere.js";
+import { MyGarden } from "./objects/MyGarden.js";
+import { MyPanorama } from "./objects//MyPanorama.js";
+import { MyPlane } from "./objects/MyPlane.js";
+import { MyRockSet } from "./objects/MyRockSet.js";
+import { MyBee } from "./objects/MyBee.js";
 
 /**
  * MyScene
@@ -33,8 +32,6 @@ export class MyScene extends CGFscene {
     this.plane = new MyPlane(this,30);
     this.garden = new MyGarden(this);
     this.rockset = new MyRockSet(this, 4, 2);
-
-    this.sphere = new MySphere(this, 5, 20, 20);
 
     let texture = new CGFtexture(this, "images/panorama4.jpg");
     this.panorama = new MyPanorama(this, texture);
