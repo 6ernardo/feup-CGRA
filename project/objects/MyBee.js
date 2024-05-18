@@ -42,9 +42,9 @@ export class MyBee extends CGFobject {
         this.black.setSpecular(0.1, 0.1, 0.1,  1.0);
 
         this.wing = new CGFappearance(this.scene);
-        this.wing.setAmbient(0.5, 1, 1, 0.25);
-        this.wing.setDiffuse(0.5, 1, 1,  0.25);
-        this.wing.setSpecular(0.5, 1, 1,  0.25);
+        this.wing.setAmbient(0.5, 1, 1, 0.10);
+        this.wing.setDiffuse(0.5, 1, 1,  0.10);
+        this.wing.setSpecular(0.5, 1, 1,  0.10);
         this.wing.setEmission(0, 0, 0, 0);
 
         this.beetex = new CGFtexture(this.scene, "./images/beetex.jpg");

@@ -4,6 +4,8 @@ import { MyPanorama } from "./objects//MyPanorama.js";
 import { MyPlane } from "./objects/MyPlane.js";
 import { MyRockSet } from "./objects/MyRockSet.js";
 import { MyBee } from "./objects/MyBee.js";
+import { MyHive } from "./objects/MyHive.js"
+import { MyPollen } from "./objects/MyPollen.js"
 
 /**
  * MyScene
@@ -32,6 +34,8 @@ export class MyScene extends CGFscene {
     this.plane = new MyPlane(this,30);
     this.garden = new MyGarden(this);
     this.rockset = new MyRockSet(this, 4, 2);
+    this.hive = new MyHive(this, 8, 10);
+    this.pollen = new MyPollen(this, 15, 15);
 
     let texture = new CGFtexture(this, "images/panorama4.jpg");
     this.panorama = new MyPanorama(this, texture);
@@ -40,17 +44,17 @@ export class MyScene extends CGFscene {
 
     //Objects connected to MyInterface
     this.displayPanorama = true;
-    this.displayAxis = true;
-    this.displayGarden = false;
+    this.displayAxis = false;
+    this.displayGarden = true;
     this.displayRockSet = false;
     this.scaleFactor = 1;
     this.speedFactor = 1;
-    this.gardenRows = 3;
-    this.gardenColumns = 3;
+    this.gardenRows = 5;
+    this.gardenColumns = 5;
 
     this.enableTextures(true);
 
-  this.texture = new CGFtexture(this, "images/terrain.jpg");
+  this.texture = new CGFtexture(this, "images/ground.jpg");
   this.appearance = new CGFappearance(this);
   this.appearance.setTexture(this.texture);
   this.appearance.setTextureWrap('REPEAT', 'REPEAT');
@@ -161,7 +165,10 @@ export class MyScene extends CGFscene {
     if (this.displayPanorama) this.panorama.display();
 
     if (this.displayGarden){
+      this.pushMatrix();
+      this.translate(10, -25, 10);
       this.garden.display(this.gardenRows, this.gardenColumns);
+      this.popMatrix();
 
       this.lights[1].enable();
       this.lights[2].enable();
@@ -172,7 +179,16 @@ export class MyScene extends CGFscene {
       this.lights[2].disable()
     }
 
-    if (this.displayRockSet) this.rockset.display();
+    this.pushMatrix();
+    this.translate(-30, -25, 30);
+    this.rockset.display();
+    this.popMatrix();
+
+    this.pushMatrix();
+    this.translate(-23.4, -18, 36.6);
+    this.rotate(90* Math.PI / 180, 0, 1, 0);
+    this.hive.display();
+    this.popMatrix();
 
     this.lights[1].update();
     this.lights[2].update();
@@ -181,7 +197,7 @@ export class MyScene extends CGFscene {
 
     this.pushMatrix();
     this.appearance.apply();
-    this.translate(0,-100,0);
+    this.translate(0,-25,0);
     this.scale(400,400,400);
     this.rotate(-Math.PI/2.0,1,0,0);
     this.plane.display();

@@ -23,8 +23,8 @@ export class MyGarden extends CGFobject {
                 row.push(this.generateRandomFlower());
 
                 // (pseudo) random position in the matrix
-                let random_x = 1.5 + Math.random() * 4;
-                let random_z = 1.5 + Math.random() * 4;
+                let random_x = 3 + Math.random() * 8;
+                let random_z = 3 + Math.random() * 8;
                 row_x.push(random_x);
                 row_z.push(random_z);
             }
@@ -40,7 +40,7 @@ export class MyGarden extends CGFobject {
             for(let j=0; j<column; j++){
 
                 this.scene.pushMatrix();
-                this.scene.translate(this.deviation_x[i][j] + 7 * i, 0, this.deviation_z[i][j] + 7 * j);
+                this.scene.translate(this.deviation_x[i][j] + 15 * i, 0, this.deviation_z[i][j] + 15 * j);
                 this.flowers[i][j].display();
                 this.scene.popMatrix();
             }
