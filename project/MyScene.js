@@ -6,6 +6,8 @@ import { MyRockSet } from "./objects/MyRockSet.js";
 import { MyBee } from "./objects/MyBee.js";
 import { MyHive } from "./objects/MyHive.js"
 import { MyPollen } from "./objects/MyPollen.js"
+import { MyGrassBlade } from "./objects/MyGrassBlade.js";
+import { MyGrassPatch } from "./objects/MyGrassPatch.js";
 
 /**
  * MyScene
@@ -36,6 +38,8 @@ export class MyScene extends CGFscene {
     this.rockset = new MyRockSet(this, 4, 2);
     this.hive = new MyHive(this, 8, 10);
     this.pollen = new MyPollen(this, 15, 15);
+    this.grassblade = new MyGrassBlade(this, 0.1, 1, 5);
+    this.grasspatch = new MyGrassPatch(this);
 
     let texture = new CGFtexture(this, "images/panorama4.jpg");
     this.panorama = new MyPanorama(this, texture);
@@ -192,6 +196,10 @@ export class MyScene extends CGFscene {
       } 
       this.previous_velocity_flag = true;
     } 
+
+    //grass
+    this.grasspatch.update(t);
+
     this.checkKeys();
   }
 
@@ -211,10 +219,13 @@ export class MyScene extends CGFscene {
 
     if (this.displayPanorama) this.panorama.display();
 
+    //this.grassblade.display();
+    this.grasspatch.display();
+
     if (this.displayGarden){
       this.pushMatrix();
       this.translate(this.garden_displacement.x, this.garden_displacement.y, this.garden_displacement.z);
-      this.garden.display(this.gardenRows, this.gardenColumns);
+      //this.garden.display(this.gardenRows, this.gardenColumns);
       this.popMatrix();
 
       this.lights[1].enable();
@@ -228,13 +239,13 @@ export class MyScene extends CGFscene {
 
     this.pushMatrix();
     this.translate(-30, -25, 30);
-    this.rockset.display();
+    //this.rockset.display();
     this.popMatrix();
 
     this.pushMatrix();
     this.translate(this.hive_coords.x, this.hive_coords.y, this.hive_coords.z);
     this.rotate(90* Math.PI / 180, 0, 1, 0);
-    this.hive.display();
+    //this.hive.display();
     this.popMatrix();
 
     this.lights[1].update();
@@ -254,7 +265,7 @@ export class MyScene extends CGFscene {
 
     this.pushMatrix();
     this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-    this.bee.display();
+    //this.bee.display();
     this.popMatrix();
   }
 
