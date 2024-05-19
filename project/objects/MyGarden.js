@@ -1,5 +1,6 @@
 import {CGFobject, CGFappearance} from '../../lib/CGF.js';
 import { MyFlower } from './MyFlower.js';
+import { MyPollen } from './MyPollen.js';
 
 /**
  * MyGarden
@@ -13,12 +14,19 @@ export class MyGarden extends CGFobject {
         this.flowers = [];
         this.deviation_x = [];
         this.deviation_z = [];
+        this.pollen_positions = [];
+        this.pollen_display = [];
+        this.pollen = new MyPollen(this.scene, 10, 10);
+
+        this.pollen_pos_undefined = true;
 
         //hardcoded bit, always generates 5x5 matrix of flowers
         for(let i=0; i<5; i++){
             let row = [];
             let row_x = [];
             let row_z= [];
+            let row_pos = [];
+            let row_display = [];
             for(let j=0; j<5; j++){
                 row.push(this.generateRandomFlower());
 
@@ -27,10 +35,17 @@ export class MyGarden extends CGFobject {
                 let random_z = 3 + Math.random() * 8;
                 row_x.push(random_x);
                 row_z.push(random_z);
+
+                let position = {x:0, y:0, z:0};
+                row_pos.push(position);
+
+                row_display.push(true);
             }
             this.deviation_x.push(row_x);
             this.deviation_z.push(row_z);
             this.flowers.push(row);
+            this.pollen_positions.push(row_pos);
+            this.pollen_display.push(row_display);
         }
 	}
 
@@ -43,9 +58,44 @@ export class MyGarden extends CGFobject {
                 this.scene.translate(this.deviation_x[i][j] + 15 * i, 0, this.deviation_z[i][j] + 15 * j);
                 this.flowers[i][j].display();
                 this.scene.popMatrix();
+
+                if(this.pollen_pos_undefined){
+                    this.pollen_positions[i][j].x = this.deviation_x[i][j] + 15 * i;
+                    this.pollen_positions[i][j].y = this.flowers[i][j].stem.stem_y;
+                    this.pollen_positions[i][j].z = this.deviation_z[i][j] + 15 * j + this.flowers[i][j].stem.stem_z;
+                }
+
+                this.scene.pushMatrix();
+                //this.scene.translate(this.deviation_x[i][j] + 15 * i, this.flowers[i][j].stem.stem_y, this.deviation_z[i][j] + 15 * j + this.flowers[i][j].stem.stem_z);
+                this.scene.translate(this.pollen_positions[i][j].x, this.pollen_positions[i][j].y, this.pollen_positions[i][j].z);
+                this.scene.rotate(this.flowers[i][j].stem_angle * this.flowers[i][j].stem_height * Math.PI/180, 1, 0, 0);
+                this.scene.scale(0.5, 0.5, 0.5);
+                if(this.pollen_display[i][j]) this.pollen.display();
+                this.scene.popMatrix();
             }
         }
+        this.pollen_pos_undefined = false;
+    }
 
+    // 0 = no hit, 1 = hit but no pollen, 2 = hit and pollen
+    check_flower_hit(position, displacement){
+        for(let i=0; i<5; i++){
+            for(let j=0; j<5; j++){
+                if(this.pollen_positions[i][j].x != 0 && this.pollen_positions[i][j].y != 0 && this.pollen_positions[i][j].z != 0){ //pollen position is defined
+                    //checks if positions is the same, with some tolerance
+                    if((this.pollen_positions[i][j].x + displacement.x  > position.x - 3 && this.pollen_positions[i][j].x  + displacement.x < position.x + 3) &&
+                    (this.pollen_positions[i][j].y + displacement.y > position.y - 1 && this.pollen_positions[i][j].y + displacement.y < position.y + 1) &&
+                    (this.pollen_positions[i][j].z + displacement.z > position.z - 3 && this.pollen_positions[i][j].z + displacement.z < position.z + 3)){
+                        if(this.pollen_display[i][j]){
+                            this.pollen_display[i][j] = false;
+                            return 2;
+                        }
+                        else return 1;
+                    }
+                }
+            }
+        }
+        return 0;
     }
 
     generateRandomFlower() {

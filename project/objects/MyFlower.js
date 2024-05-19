@@ -1,5 +1,6 @@
 import {CGFobject} from '../../lib/CGF.js';
 import { MyPetal } from './MyPetal.js';
+import { MyPollen } from './MyPollen.js';
 import { MyReceptacle } from './MyReceptacle.js';
 import { MyStem } from './MyStem.js';
 
@@ -30,7 +31,6 @@ export class MyFlower extends CGFobject {
         this.receptacle = new MyReceptacle(this.scene, receptacle_radius, receptacle_height, receptacle_material);
         this.petal = new MyPetal(this.scene, petal_angle, petal_material, this.triangle_height);
 }
-
 
     display() {
         this.scene.pushMatrix();

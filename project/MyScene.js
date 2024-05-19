@@ -59,6 +59,11 @@ export class MyScene extends CGFscene {
   this.appearance.setTexture(this.texture);
   this.appearance.setTextureWrap('REPEAT', 'REPEAT');
 
+  this.garden_displacement = {x: 10, y: -25, z: 10};
+  this.previous_velocity = {x: 0, y: 0, z: 0};
+  this.previous_velocity_flag = false; //if true, this velocity is valid
+  this.hive_coords = {x: -23.4, y: -18, z: 36.6}
+
   this.starttime = Date.now();
   this.setUpdatePeriod(30);
   }
@@ -135,6 +140,27 @@ export class MyScene extends CGFscene {
       keysPressed = true;
     }
 
+    if (this.gui.isKeyPressed("KeyF")) {
+      this.bee.descend(this.speedFactor);
+      text += " F ";
+      keysPressed = true;
+    }
+
+    if (this.gui.isKeyPressed("KeyP")) {
+      console.log(this.previous_velocity);
+      this.bee.ascend(this.speedFactor, this.previous_velocity);
+      text += " P ";
+      keysPressed = true;
+    }
+
+    if (this.gui.isKeyPressed("KeyO")) {
+      if(this.bee.pollen_display && this.bee.position.y == 0){
+        this.bee.gotohive(this.speedFactor, this.hive_coords)
+      }
+      text += " O ";
+      keysPressed = true;
+    }
+
     if (keysPressed) console.log(text);
   }
 
@@ -143,8 +169,29 @@ export class MyScene extends CGFscene {
 
     this.oscilation = Math.sin(this.time_diff * Math.PI * 2);
     this.wings = Math.sin(this.time_diff * Math.PI * 12);
-    this.bee.update(this.oscilation, this.wings, 3);
+    this.bee.update(this.oscilation, this.wings, 3, this.hive_coords);
 
+
+    let flower_hit_check = this.garden.check_flower_hit(this.bee.position, this.garden_displacement);
+    if(flower_hit_check == 2){
+      this.bee.pollen_display = true;
+      if(this.previous_velocity_flag){
+        this.previous_velocity.x = this.bee.velocity.x;
+        this.previous_velocity.y = this.bee.velocity.y;
+        this.previous_velocity.z = this.bee.velocity.z;
+        this.previous_velocity_flag = false;
+      }
+      this.bee.velocity = {x: 0, y: 0, z: 0};
+    }
+    else if(flower_hit_check == 1) this.bee.velocity = {x: 0, y: 0, z: 0};
+    else {
+      if(this.bee.position.y == 0){
+        this.previous_velocity.x = this.bee.velocity.x;
+        this.previous_velocity.y = this.bee.velocity.y;
+        this.previous_velocity.z = this.bee.velocity.z;
+      } 
+      this.previous_velocity_flag = true;
+    } 
     this.checkKeys();
   }
 
@@ -166,7 +213,7 @@ export class MyScene extends CGFscene {
 
     if (this.displayGarden){
       this.pushMatrix();
-      this.translate(10, -25, 10);
+      this.translate(this.garden_displacement.x, this.garden_displacement.y, this.garden_displacement.z);
       this.garden.display(this.gardenRows, this.gardenColumns);
       this.popMatrix();
 
@@ -185,7 +232,7 @@ export class MyScene extends CGFscene {
     this.popMatrix();
 
     this.pushMatrix();
-    this.translate(-23.4, -18, 36.6);
+    this.translate(this.hive_coords.x, this.hive_coords.y, this.hive_coords.z);
     this.rotate(90* Math.PI / 180, 0, 1, 0);
     this.hive.display();
     this.popMatrix();

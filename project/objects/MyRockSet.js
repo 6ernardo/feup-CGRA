@@ -31,7 +31,6 @@ export class MyRockSet extends CGFobject {
 
     display() {
         let counter = 0;
-        console.log(this.rocks.length);
         for(let i=0; i<this.height; i++){
             for(let row=0; row<2*(i+1)-1; row++){
                 for(let column=0; column<2*(i+1)-1; column++){
