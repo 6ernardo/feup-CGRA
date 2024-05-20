@@ -41,7 +41,7 @@ export class MyScene extends CGFscene {
     this.grassblade = new MyGrassBlade(this, 0.1, 1, 5);
     this.grasspatch = new MyGrassPatch(this);
 
-    let texture = new CGFtexture(this, "images/panorama4.jpg");
+    let texture = new CGFtexture(this, "images/panorama.jpg");
     this.panorama = new MyPanorama(this, texture);
 
     this.bee = new MyBee(this);
@@ -219,13 +219,16 @@ export class MyScene extends CGFscene {
 
     if (this.displayPanorama) this.panorama.display();
 
-    //this.grassblade.display();
+    this.pushMatrix();
+    this.translate(0, -25, 0);
+    this.scale(2.5, 2.5, 2.5);
     this.grasspatch.display();
+    this.popMatrix();
 
     if (this.displayGarden){
       this.pushMatrix();
       this.translate(this.garden_displacement.x, this.garden_displacement.y, this.garden_displacement.z);
-      //this.garden.display(this.gardenRows, this.gardenColumns);
+      this.garden.display(this.gardenRows, this.gardenColumns);
       this.popMatrix();
 
       this.lights[1].enable();
@@ -239,13 +242,13 @@ export class MyScene extends CGFscene {
 
     this.pushMatrix();
     this.translate(-30, -25, 30);
-    //this.rockset.display();
+    this.rockset.display();
     this.popMatrix();
 
     this.pushMatrix();
     this.translate(this.hive_coords.x, this.hive_coords.y, this.hive_coords.z);
     this.rotate(90* Math.PI / 180, 0, 1, 0);
-    //this.hive.display();
+    this.hive.display();
     this.popMatrix();
 
     this.lights[1].update();
@@ -265,7 +268,7 @@ export class MyScene extends CGFscene {
 
     this.pushMatrix();
     this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-    //this.bee.display();
+    this.bee.display();
     this.popMatrix();
   }
 

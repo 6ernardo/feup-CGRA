@@ -48,12 +48,11 @@ export class MyGrassPatch extends CGFobject {
     display() {
         
         this.scene.setActiveShader(this.grassShader);
-        for(let i=0; i<1; i++){
-            for(let j=0; j<1; j++){
+        for(let i=0; i<50; i++){
+            for(let j=0; j<50; j++){
                 this.scene.pushMatrix();
                 this.scene.translate(this.deviation_x[i][j] + i, 0, this.deviation_z[i][j] + j);
                 this.scene.rotate(this.rotation[i][j], 0, 1, 0);
-                this.scene.scale(10, 10, 10);
                 this.material.setTexture(this.text);
                 this.material.apply();
                 this.grass.display();
