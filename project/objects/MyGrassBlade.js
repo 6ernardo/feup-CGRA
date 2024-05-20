@@ -17,8 +17,8 @@ export class MyGrassBlade extends CGFobject {
         this.vertices = [
             -0.05, 0, 0, // A
             0.05, 0, 0, // B
-            -0.05, 0.6, 0, //C
-            0.05, 0.6, 0, //D
+            -0.05, 0.5, 0, //C
+            0.05, 0.5, 0, //D
             0, 1, 0 // E
         ]
 
