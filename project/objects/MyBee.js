@@ -12,7 +12,7 @@ export class MyBee extends CGFobject {
 
     constructor(scene, position = {x: 0, y: 0, z: 0}, orientation = 0, velocity = {x: 0, y:0, z: 0}) {
         super(scene);
-        this.sphere = new MySphere(this.scene, 1, 20, 20);
+        this.sphere = new MySphere(this.scene, 1, 15, 15);
         this.cone = new MyCone(this.scene, 1, 5, 6, 1);
         this.pollen = new MyPollen(this.scene, 10, 10);
 
@@ -85,6 +85,7 @@ export class MyBee extends CGFobject {
             this.velocity.y = 0;
             this.velocity.z = 0;
             this.pollen_display = false;
+            this.is_oscilating = true;
         }
     }
 
@@ -125,6 +126,7 @@ export class MyBee extends CGFobject {
         this.velocity.x = direction_vector.x / norma * speedFactor/5;
         this.velocity.y = direction_vector.y / norma * speedFactor/5;
         this.velocity.z = direction_vector.z / norma * speedFactor/5;
+        this.is_oscilating = false;
     }
 
     display_left_legs(){

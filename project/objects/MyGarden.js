@@ -16,7 +16,7 @@ export class MyGarden extends CGFobject {
         this.deviation_z = [];
         this.pollen_positions = [];
         this.pollen_display = [];
-        this.pollen = new MyPollen(this.scene, 10, 10);
+        this.pollen = new MyPollen(this.scene, 8, 8);
 
         this.pollen_pos_undefined = true;
 

@@ -19,7 +19,7 @@ export class MyRockSet extends CGFobject {
 
         for(let i=0; i<this.height; i++){
             for(let j=0; j<(2*(i+1)-1)**2; j++){
-                this.rocks.push(new MyRock(this.scene, radius, 10, 10));
+                this.rocks.push(new MyRock(this.scene, radius, 8, 8));
                 let x = 0.6 + Math.random() * 0.4;
                 let y = 0.4 + Math.random() * 0.2;
                 let z = 0.6 + Math.random() * 0.4;

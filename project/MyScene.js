@@ -6,7 +6,6 @@ import { MyRockSet } from "./objects/MyRockSet.js";
 import { MyBee } from "./objects/MyBee.js";
 import { MyHive } from "./objects/MyHive.js"
 import { MyPollen } from "./objects/MyPollen.js"
-import { MyGrassBlade } from "./objects/MyGrassBlade.js";
 import { MyGrassPatch } from "./objects/MyGrassPatch.js";
 
 /**
@@ -38,7 +37,6 @@ export class MyScene extends CGFscene {
     this.rockset = new MyRockSet(this, 4, 2);
     this.hive = new MyHive(this, 8, 10);
     this.pollen = new MyPollen(this, 15, 15);
-    this.grassblade = new MyGrassBlade(this, 0.1, 1, 5);
     this.grasspatch = new MyGrassPatch(this);
 
     let texture = new CGFtexture(this, "images/panorama.jpg");
@@ -50,7 +48,7 @@ export class MyScene extends CGFscene {
     this.displayPanorama = true;
     this.displayAxis = false;
     this.displayGarden = true;
-    this.displayRockSet = false;
+    this.displayRockSet = true;
     this.scaleFactor = 1;
     this.speedFactor = 1;
     this.gardenRows = 5;
@@ -73,24 +71,17 @@ export class MyScene extends CGFscene {
   }
 
   initLights() {
-    this.lights[0].setPosition(15, 0, 5, 1);
+    this.lights[0].setPosition(0, 50, 0, 1);
     this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
     this.lights[0].enable();
     this.lights[0].update();
 
-    this.lights[1].setPosition(0, 20, 0, 1);
+    this.lights[1].setPosition(40, 10, 40, 1);
     this.lights[1].setDiffuse(0.4, 0.4, 0.4, 1.0);
     this.lights[1].setSpecular(0.4, 0.4, 0.4, 1.0);
-    this.lights[1].disable();
-    this.lights[1].setVisible(false);
+    this.lights[1].enable();
     this.lights[1].update();
 
-    this.lights[2].setPosition(18, 30, 18, 1);
-    this.lights[2].setDiffuse(0.1, 0.1, 0.1, 1.0);
-    this.lights[2].setSpecular(0.1, 0.1, 0.1, 1.0);
-    this.lights[2].disable();
-    this.lights[2].setVisible(false);
-    this.lights[2].update();
     
   }
   initCameras() {
@@ -230,29 +221,21 @@ export class MyScene extends CGFscene {
       this.translate(this.garden_displacement.x, this.garden_displacement.y, this.garden_displacement.z);
       this.garden.display(this.gardenRows, this.gardenColumns);
       this.popMatrix();
-
-      this.lights[1].enable();
-      this.lights[2].enable();
-
     } 
-    else {
-      this.lights[1].disable();
-      this.lights[2].disable()
-    }
 
-    this.pushMatrix();
-    this.translate(-30, -25, 30);
-    this.rockset.display();
-    this.popMatrix();
+
+    if(this.displayRockSet){
+      this.pushMatrix();
+      this.translate(-30, -25, 30);
+      this.rockset.display();
+      this.popMatrix();
+  }
 
     this.pushMatrix();
     this.translate(this.hive_coords.x, this.hive_coords.y, this.hive_coords.z);
     this.rotate(90* Math.PI / 180, 0, 1, 0);
     this.hive.display();
     this.popMatrix();
-
-    this.lights[1].update();
-    this.lights[2].update();
 
     // ---- BEGIN Primitive drawing section
 
