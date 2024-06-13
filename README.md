@@ -1,11 +1,8 @@
-# CG 2023/2024
+# FEUP - CG
 
-## Group T01G04
+TP Classes and Final Project of the Computer Graphics course unit at FEUP.
 
-| Name                     | Number    | E-Mail               |
-| ------------------------ | --------- | -------------------- |
-| Ana Sofia Silva Pinto    | 202004606 | up202004606@fc.up.pt |
-| Bernardo Ferreira Campos | 202006056 | up202006056@up.pt    |
+[**CG Unit Info**](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=520332)
 
 ---
 
